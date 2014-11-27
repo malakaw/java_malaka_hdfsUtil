@@ -47,6 +47,18 @@ public class MapFileLookup {
         return instance;
     }
 
+    public void update(String fileName)
+    {
+        close();
+        synchronized(MapFileLookup.class)
+        {
+            if(null == instance)
+            {
+                instance = new MapFileLookup(fileName);                
+            }
+        }
+    }
+    
     public String getValue(String key)
     {
         Text txtValue = new Text();
